@@ -671,12 +671,12 @@
       pointer-events: none;
     }
 
-    .photo-archive-section.is-visible .photo-archive-scan {
-      animation: photoArchiveScan 1.2s .2s ease-in-out 1 both;
+    .photo-archive-section.scan-active .photo-archive-scan {
+      animation: photoArchiveScan 3.2s linear infinite;
     }
 
     .photo-archive-card:nth-child(2) .photo-archive-scan {
-      animation-delay: .38s;
+      animation-delay: 1.1s;
     }
 
     @keyframes photoArchiveScan {
@@ -1220,29 +1220,94 @@
     const photoArchiveSection =
       document.querySelector(".photo-archive-section");
 
-    if (
-      photoArchiveSection &&
-      !reduceMotion &&
-      "IntersectionObserver" in window
-    ) {
-      photoArchiveSection.classList.add("reveal-ready");
+    if (photoArchiveSection && !reduceMotion) {
+      let photoArchiveRevealed = false;
+      let photoArchiveRevealScheduled = false;
 
-      const photoArchiveObserver =
-        new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                photoArchiveSection.classList.add("is-visible");
-                observer.unobserve(photoArchiveSection);
-              }
-            });
-          },
-          {
-            threshold: 0.2
+      function startPhotoArchiveOnScroll() {
+        if (
+          photoArchiveRevealed ||
+          photoArchiveRevealScheduled ||
+          window.scrollY <= 0
+        ) {
+          return;
+        }
+
+        photoArchiveRevealScheduled = true;
+
+        window.requestAnimationFrame(() => {
+          photoArchiveRevealScheduled = false;
+
+          if (photoArchiveRevealed || window.scrollY <= 0) {
+            return;
           }
-        );
 
-      photoArchiveObserver.observe(photoArchiveSection);
+          const bounds =
+            photoArchiveSection.getBoundingClientRect();
+
+          const revealPoint =
+            window.innerHeight * .82;
+
+          if (
+            bounds.top > revealPoint ||
+            bounds.bottom <= 0
+          ) {
+            return;
+          }
+
+          photoArchiveRevealed = true;
+          photoArchiveSection.classList.add("reveal-ready");
+
+          window.requestAnimationFrame(() => {
+            photoArchiveSection.classList.add("is-visible");
+
+            const visibleBounds =
+              photoArchiveSection.getBoundingClientRect();
+
+            if (
+              visibleBounds.top < window.innerHeight &&
+              visibleBounds.bottom > 0
+            ) {
+              photoArchiveSection.classList.add("scan-active");
+            }
+          });
+
+          window.removeEventListener(
+            "scroll",
+            startPhotoArchiveOnScroll
+          );
+        });
+      }
+
+      window.addEventListener(
+        "scroll",
+        startPhotoArchiveOnScroll,
+        { passive: true }
+      );
+
+      if ("IntersectionObserver" in window) {
+        const photoArchiveVisibilityObserver =
+          new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!photoArchiveRevealed) return;
+
+                if (entry.isIntersecting) {
+                  photoArchiveSection.classList.add("scan-active");
+                } else {
+                  photoArchiveSection.classList.remove("scan-active");
+                }
+              });
+            },
+            {
+              threshold: 0.05
+            }
+          );
+
+        photoArchiveVisibilityObserver.observe(
+          photoArchiveSection
+        );
+      }
     }
 
     let scrollScheduled = false;
