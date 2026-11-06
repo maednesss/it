@@ -32,6 +32,7 @@
     :root {
       color-scheme: dark;
       --red: #ff1010;
+      --green: #20d878;
       --black: #050505;
       --white: #f7f7f7;
       --muted: rgba(255, 255, 255, .62);
@@ -396,9 +397,36 @@
       white-space: nowrap;
     }
 
-    .marquee-text span {
-      padding: 0 17px;
-      color: var(--red);
+    .marquee-text .marquee-marker {
+      position: relative;
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin: 0 17px;
+      vertical-align: middle;
+      background: var(--green);
+      box-shadow: 0 0 9px rgba(32, 216, 120, .9);
+      transform: rotate(45deg);
+    }
+
+    .marquee-text .marquee-marker::after {
+      position: absolute;
+      inset: -3px;
+      content: "";
+      border: 1px solid rgba(32, 216, 120, .55);
+      animation: marqueeMarkerPulse 1.8s ease-out infinite;
+    }
+
+    @keyframes marqueeMarkerPulse {
+      0% {
+        opacity: .9;
+        transform: scale(.55);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.65);
+      }
     }
 
     /* NEXT EVENT */
@@ -581,7 +609,6 @@
 
     .photo-archive-section {
       margin-top: 26px;
-      animation: sectionReveal .75s .32s ease both;
     }
 
     .photo-archive-grid {
@@ -631,9 +658,50 @@
       pointer-events: none;
     }
 
+    .photo-archive-scan {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      opacity: 0;
+      background: var(--red);
+      box-shadow: 0 0 8px 2px rgba(255, 16, 16, .82);
+      pointer-events: none;
+    }
+
+    .photo-archive-section.is-visible .photo-archive-scan {
+      animation: photoArchiveScan 1.2s .2s ease-in-out 1 both;
+    }
+
+    .photo-archive-card:nth-child(2) .photo-archive-scan {
+      animation-delay: .38s;
+    }
+
+    @keyframes photoArchiveScan {
+      0% {
+        top: 0;
+        opacity: 0;
+      }
+
+      14% {
+        opacity: .9;
+      }
+
+      78% {
+        opacity: .6;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
     .photo-archive-card::after {
       position: absolute;
-      z-index: 3;
+      z-index: 4;
       top: 8px;
       right: 8px;
       width: 17px;
@@ -642,6 +710,23 @@
       border-top: 1px solid var(--red);
       border-right: 1px solid var(--red);
       pointer-events: none;
+    }
+
+    .photo-archive-section.reveal-ready .photo-archive-card {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity .62s ease,
+        transform .62s cubic-bezier(.22, .75, .25, 1);
+    }
+
+    .photo-archive-section.reveal-ready.is-visible .photo-archive-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-archive-section.reveal-ready.is-visible .photo-archive-card:nth-child(2) {
+      transition-delay: .14s;
     }
 
     .photo-archive-card:focus-visible {
@@ -656,7 +741,7 @@
 
     .photo-archive-card-content {
       position: absolute;
-      z-index: 2;
+      z-index: 3;
       inset: auto 0 0;
       display: flex;
       align-items: flex-end;
@@ -985,10 +1070,10 @@
         <div class="marquee" aria-hidden="true">
           <div class="marquee-track">
             <span class="marquee-text">
-              MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
+              MÆDNESS <span class="marquee-marker" aria-hidden="true"></span> EVENT ACCESS <span class="marquee-marker" aria-hidden="true"></span> FOGGIA / ITALY <span class="marquee-marker" aria-hidden="true"></span>
             </span>
             <span class="marquee-text">
-              MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
+              MÆDNESS <span class="marquee-marker" aria-hidden="true"></span> EVENT ACCESS <span class="marquee-marker" aria-hidden="true"></span> FOGGIA / ITALY <span class="marquee-marker" aria-hidden="true"></span>
             </span>
           </div>
         </div>
@@ -1055,6 +1140,7 @@
             loading="lazy"
             decoding="async"
           >
+          <span class="photo-archive-scan" aria-hidden="true"></span>
           <span class="photo-archive-card-content">
             <span class="photo-archive-copy">
               <span class="photo-archive-index">GALLERY / 01</span>
@@ -1084,6 +1170,7 @@
             loading="lazy"
             decoding="async"
           >
+          <span class="photo-archive-scan" aria-hidden="true"></span>
           <span class="photo-archive-card-content">
             <span class="photo-archive-copy">
               <span class="photo-archive-index">GALLERY / 02</span>
@@ -1129,6 +1216,34 @@
 
     const reduceMotion =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const photoArchiveSection =
+      document.querySelector(".photo-archive-section");
+
+    if (
+      photoArchiveSection &&
+      !reduceMotion &&
+      "IntersectionObserver" in window
+    ) {
+      photoArchiveSection.classList.add("reveal-ready");
+
+      const photoArchiveObserver =
+        new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                photoArchiveSection.classList.add("is-visible");
+                observer.unobserve(photoArchiveSection);
+              }
+            });
+          },
+          {
+            threshold: 0.2
+          }
+        );
+
+      photoArchiveObserver.observe(photoArchiveSection);
+    }
 
     let scrollScheduled = false;
     let sliceLoopActive = false;
