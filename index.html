@@ -34,8 +34,8 @@
       --red: #ff1010;
       --black: #050505;
       --white: #f7f7f7;
-      --muted: rgba(255, 255, 255, .55);
-      --line: rgba(255, 255, 255, .16);
+      --muted: rgba(255, 255, 255, .62);
+      --line: rgba(255, 255, 255, .18);
     }
 
     *,
@@ -72,7 +72,7 @@
       inset: 0;
       content: "";
       pointer-events: none;
-      opacity: .14;
+      opacity: .12;
       background:
         repeating-linear-gradient(
           0deg,
@@ -91,7 +91,7 @@
       height: 30%;
       content: "";
       pointer-events: none;
-      opacity: .12;
+      opacity: .1;
       background: linear-gradient(
         180deg,
         transparent,
@@ -99,10 +99,6 @@
         transparent
       );
       animation: backgroundScan 9s linear infinite;
-    }
-
-    a {
-      color: inherit;
     }
 
     .scroll-progress {
@@ -121,7 +117,6 @@
       width: 100%;
       height: 0;
       background: var(--red);
-      transform-origin: top;
       box-shadow: 0 0 8px rgba(255, 16, 16, .8);
     }
 
@@ -134,28 +129,88 @@
       min-height: 100vh;
       min-height: 100svh;
       margin: 0 auto;
-      padding: 24px 20px 20px;
+      padding: 0 20px 20px;
       animation: pageReveal .7s ease both;
+    }
+
+    /* VIDEO HERO */
+
+    .profile-hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% + 40px);
+      min-height: clamp(470px, 68svh, 610px);
+      margin: 0 -20px 28px;
+      overflow: hidden;
+      background: #080808;
+      isolation: isolate;
+    }
+
+    .hero-video {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: #050505;
+    }
+
+    .profile-hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, .62) 0%,
+          rgba(0, 0, 0, .23) 34%,
+          rgba(0, 0, 0, .48) 68%,
+          rgba(5, 5, 5, .92) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(5, 5, 5, .18),
+          transparent 50%,
+          rgba(5, 5, 5, .18)
+        );
+    }
+
+    .hero-inner {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 24px 20px 15px;
     }
 
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       min-height: 30px;
       padding-bottom: 13px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255, 255, 255, .3);
       font-size: 8px;
       font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, .75);
     }
 
     .topbar-brand {
       font-family: "Anton", sans-serif;
       font-size: 15px;
       letter-spacing: .07em;
+      white-space: nowrap;
     }
 
     .topbar-signal {
@@ -190,9 +245,11 @@
 
     .profile {
       display: flex;
+      flex: 1;
       flex-direction: column;
       align-items: center;
-      padding: 42px 0 28px;
+      justify-content: center;
+      padding: 42px 0 36px;
       text-align: center;
       animation: sectionReveal .7s .08s ease both;
     }
@@ -203,10 +260,11 @@
       height: 96px;
       margin-bottom: 17px;
       padding: 4px;
-      border: 1px solid rgba(255, 16, 16, .75);
+      border: 1px solid rgba(255, 16, 16, .85);
       border-radius: 50%;
+      background: rgba(5, 5, 5, .58);
       box-shadow:
-        0 0 20px rgba(255, 16, 16, .13),
+        0 0 24px rgba(255, 16, 16, .2),
         inset 0 0 14px rgba(255, 16, 16, .08);
     }
 
@@ -238,7 +296,7 @@
       inset: -6px;
       border: 1px solid transparent;
       border-top-color: var(--red);
-      border-right-color: rgba(255, 16, 16, .28);
+      border-right-color: rgba(255, 16, 16, .35);
       border-radius: 50%;
       animation: orbit 7s linear infinite;
       pointer-events: none;
@@ -258,12 +316,13 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       color: var(--red);
       font-size: 8px;
       font-weight: 900;
       letter-spacing: .24em;
       text-transform: uppercase;
+      text-shadow: 0 1px 8px #000;
     }
 
     h1 {
@@ -274,28 +333,31 @@
       line-height: .9;
       letter-spacing: -.025em;
       text-shadow:
-        3px 0 rgba(255, 16, 16, .72),
-        -1px 0 rgba(255, 255, 255, .22);
+        3px 0 rgba(255, 16, 16, .85),
+        -1px 0 rgba(255, 255, 255, .28),
+        0 2px 12px rgba(0, 0, 0, .8);
       animation: wordmarkFlicker 5s ease-in-out infinite;
     }
 
     .profile-caption {
-      margin: 11px 0 0;
-      color: var(--muted);
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, .8);
       font-size: 8px;
       font-weight: 800;
       letter-spacing: .2em;
       text-transform: uppercase;
+      text-shadow: 0 1px 8px #000;
     }
 
     .marquee {
       position: relative;
-      width: calc(100% + 40px);
-      margin: 0 -20px 24px;
+      z-index: 2;
+      width: 100%;
       overflow: hidden;
-      border-top: 1px solid rgba(255, 16, 16, .32);
+      border-top: 1px solid rgba(255, 16, 16, .52);
       border-bottom: 1px solid rgba(255, 16, 16, .32);
-      background: rgba(255, 16, 16, .035);
+      background: rgba(5, 5, 5, .42);
+      backdrop-filter: blur(3px);
     }
 
     .marquee-track {
@@ -307,7 +369,7 @@
     .marquee-text {
       display: block;
       padding: 9px 0;
-      color: rgba(255, 255, 255, .62);
+      color: rgba(255, 255, 255, .75);
       font-size: 7px;
       font-weight: 900;
       letter-spacing: .22em;
@@ -318,6 +380,12 @@
     .marquee-text span {
       padding: 0 17px;
       color: var(--red);
+    }
+
+    /* NEXT EVENT */
+
+    .next-event-section {
+      animation: sectionReveal .75s .2s ease both;
     }
 
     .section-label {
@@ -338,76 +406,6 @@
       text-align: right;
     }
 
-    .last-maed-section {
-      margin-bottom: 30px;
-      animation: sectionReveal .75s .14s ease both;
-    }
-
-    .last-maed-video-box {
-      position: relative;
-      width: 100%;
-      margin: 0;
-    }
-
-    .last-maed-video {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      object-position: center;
-      background: #000;
-      border: 0;
-      outline: none;
-      border-radius: 0;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    .last-maed-video-box::before,
-    .last-maed-video-box::after {
-      position: absolute;
-      left: -5px;
-      z-index: 5;
-      width: 18px;
-      height: 18px;
-      content: "";
-      pointer-events: none;
-    }
-
-    .last-maed-video-box::before {
-      top: -5px;
-      border-top: 1px solid var(--red);
-      border-left: 1px solid var(--red);
-    }
-
-    .last-maed-video-box::after {
-      bottom: -5px;
-      border-bottom: 1px solid var(--red);
-      border-left: 1px solid var(--red);
-    }
-
-    .last-maed-caption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 7px;
-      font-weight: 900;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .last-maed-caption span:last-child {
-      color: var(--red);
-      text-align: right;
-    }
-
-    .next-event-section {
-      animation: sectionReveal .75s .25s ease both;
-    }
-
     .next-event-panel {
       position: relative;
       overflow: hidden;
@@ -419,7 +417,7 @@
           rgba(255, 16, 16, .08),
           transparent 45%
         ),
-        rgba(10, 10, 10, .88);
+        rgba(10, 10, 10, .92);
       box-shadow: inset 0 0 24px rgba(255, 16, 16, .035);
     }
 
@@ -480,7 +478,7 @@
       left: 0;
       height: 1px;
       content: "";
-      background: rgba(255, 16, 16, .18);
+      background: rgba(255, 16, 16, .22);
       transform: translateY(-50%);
     }
 
@@ -496,9 +494,12 @@
       letter-spacing: .14em;
       text-align: center;
       text-shadow:
-        3px 0 rgba(255, 16, 16, .72),
-        0 0 22px rgba(255, 16, 16, .18);
-      transition: opacity .1s ease;
+        3px 0 rgba(255, 16, 16, .78),
+        0 0 22px rgba(255, 16, 16, .2);
+      transition:
+        opacity .08s ease,
+        filter .08s ease,
+        transform .08s ease;
     }
 
     .signal-code.changing {
@@ -534,27 +535,27 @@
       height: 5px;
       background: var(--red);
       opacity: .8;
-      animation: signalBars 1s ease-in-out infinite alternate;
+      animation: signalBars .8s ease-in-out infinite alternate;
     }
 
     .signal-bars i:nth-child(2) {
       height: 9px;
-      animation-delay: .12s;
+      animation-delay: .1s;
     }
 
     .signal-bars i:nth-child(3) {
       height: 13px;
-      animation-delay: .24s;
+      animation-delay: .2s;
     }
 
     .signal-bars i:nth-child(4) {
       height: 7px;
-      animation-delay: .36s;
+      animation-delay: .3s;
     }
 
     .signal-bars i:nth-child(5) {
       height: 11px;
-      animation-delay: .48s;
+      animation-delay: .4s;
     }
 
     .footer {
@@ -569,7 +570,7 @@
       font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
-      animation: sectionReveal .7s .4s ease both;
+      animation: sectionReveal .7s .35s ease both;
     }
 
     .footer-mark {
@@ -627,15 +628,17 @@
       0%, 93%, 100% {
         opacity: 1;
         text-shadow:
-          3px 0 rgba(255, 16, 16, .72),
-          -1px 0 rgba(255, 255, 255, .22);
+          3px 0 rgba(255, 16, 16, .85),
+          -1px 0 rgba(255, 255, 255, .28),
+          0 2px 12px rgba(0, 0, 0, .8);
       }
 
       94% {
         opacity: .88;
         text-shadow:
-          5px 0 rgba(255, 16, 16, .9),
-          -2px 0 rgba(255, 255, 255, .3);
+          5px 0 rgba(255, 16, 16, .95),
+          -2px 0 rgba(255, 255, 255, .34),
+          0 2px 12px rgba(0, 0, 0, .8);
       }
 
       96% {
@@ -701,8 +704,16 @@
         padding-left: 16px;
       }
 
-      .profile {
-        padding-top: 36px;
+      .profile-hero {
+        width: calc(100% + 32px);
+        margin-right: -16px;
+        margin-left: -16px;
+        min-height: 470px;
+      }
+
+      .hero-inner {
+        padding-right: 16px;
+        padding-left: 16px;
       }
 
       .topbar-signal {
@@ -710,10 +721,8 @@
         font-size: 7px;
       }
 
-      .marquee {
-        width: calc(100% + 32px);
-        margin-right: -16px;
-        margin-left: -16px;
+      .signal-code {
+        font-size: 36px;
       }
     }
 
@@ -737,80 +746,70 @@
 
   <main class="page">
 
-    <header class="topbar">
-      <div class="topbar-brand">MÆDNESS</div>
+    <section class="profile-hero" aria-label="MÆDNESS">
+      <video
+        class="hero-video"
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+        disablepictureinpicture
+        controlslist="nodownload noplaybackrate nofullscreen"
+        aria-hidden="true"
+      >
+        <source src="./hero3.mp4" type="video/mp4">
+      </video>
 
-      <div class="topbar-signal">
-        <span class="signal-dot" aria-hidden="true"></span>
-        <span id="signalText">MÆDNESS / EVENT INDEX</span>
-      </div>
-    </header>
+      <div class="hero-inner">
+        <header class="topbar">
+          <div class="topbar-brand">MÆDNESS</div>
 
-    <section class="profile" aria-labelledby="profile-title">
-      <div class="avatar-frame">
-        <span class="avatar-orbit" aria-hidden="true"></span>
-        <img
-          class="avatar"
-          src="https://ugc.production.linktr.ee/4035012a-7d56-433f-9e0c-68214cc77aff_image.png"
-          alt="Logo MÆDNESS"
-          width="86"
-          height="86"
-        >
-      </div>
+          <div class="topbar-signal">
+            <span class="signal-dot" aria-hidden="true"></span>
+            <span id="signalText">MÆDNESS / EVENT INDEX</span>
+          </div>
+        </header>
 
-      <div class="profile-kicker">
-        <span class="signal-dot" aria-hidden="true"></span>
-        OFFICIAL EVENTS LINK
-      </div>
+        <div class="profile">
+          <div class="avatar-frame">
+            <span class="avatar-orbit" aria-hidden="true"></span>
+            <img
+              class="avatar"
+              src="https://ugc.production.linktr.ee/4035012a-7d56-433f-9e0c-68214cc77aff_image.png"
+              alt="Logo MÆDNESS"
+              width="86"
+              height="86"
+            >
+          </div>
 
-      <h1 id="profile-title">MÆDNESS</h1>
-      <p class="profile-caption">FOGGIA / ITALY</p>
-    </section>
+          <div class="profile-kicker">
+            <span class="signal-dot" aria-hidden="true"></span>
+            OFFICIAL EVENTS LINK
+          </div>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="marquee-text">
-          MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
-        </span>
-        <span class="marquee-text">
-          MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
-        </span>
-      </div>
-    </div>
-
-    <section class="last-maed-section" aria-labelledby="last-maed-title">
-      <div class="section-label">
-        <span id="last-maed-title">01 / LAST MÆD</span>
-        <span>Video / Loop</span>
-      </div>
-
-      <div class="last-maed-video-box">
-        <video
-          class="last-maed-video"
-          id="lastMaedVideo"
-          autoplay
-          muted
-          loop
-          playsinline
-          webkit-playsinline
-          preload="metadata"
-          disablepictureinpicture
-          controlslist="nodownload noplaybackrate nofullscreen"
-          aria-label="Video LAST MÆD"
-        >
-          <source src="./hero3.mp4" type="video/mp4">
-        </video>
+          <h1>MÆDNESS</h1>
+          <p class="profile-caption">FOGGIA / ITALY</p>
+        </div>
       </div>
 
-      <div class="last-maed-caption">
-        <span>LAST MÆD</span>
-        <span>MÆDNESS / VISUAL LOG</span>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-text">
+            MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
+          </span>
+          <span class="marquee-text">
+            MÆDNESS <span>✳</span> EVENT ACCESS <span>✳</span> FOGGIA / ITALY <span>✳</span>
+          </span>
+        </div>
       </div>
     </section>
 
     <section class="next-event-section" aria-labelledby="next-event-title">
       <div class="section-label">
-        <span id="next-event-title">02 / NEXT EVENT</span>
+        <span id="next-event-title">01 / NEXT EVENT</span>
         <span>Signal / Encrypted</span>
       </div>
 
@@ -824,7 +823,6 @@
           <div
             class="signal-code"
             id="eventCode"
-            aria-live="polite"
             aria-label="Codice del prossimo evento"
           >
             N7X04A9M
@@ -832,7 +830,7 @@
         </div>
 
         <div class="next-event-status">
-          <span id="decodeStatus">Decoding transmission</span>
+          <span>Decoding transmission</span>
 
           <span class="signal-bars" aria-hidden="true">
             <i></i>
@@ -863,8 +861,8 @@
     const eventCode =
       document.getElementById("eventCode");
 
-    const lastMaedVideo =
-      document.getElementById("lastMaedVideo");
+    const heroVideo =
+      document.getElementById("heroVideo");
 
     const reduceMotion =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -905,56 +903,46 @@
 
     updateScrollProgress();
 
-    function startLastMaedVideo() {
-      if (!lastMaedVideo) return;
+    function startHeroVideo() {
+      if (!heroVideo) return;
 
-      lastMaedVideo.muted = true;
-      lastMaedVideo.defaultMuted = true;
+      heroVideo.muted = true;
+      heroVideo.defaultMuted = true;
 
-      lastMaedVideo.setAttribute("muted", "");
-      lastMaedVideo.setAttribute("playsinline", "");
-      lastMaedVideo.setAttribute("webkit-playsinline", "");
+      heroVideo.setAttribute("muted", "");
+      heroVideo.setAttribute("playsinline", "");
+      heroVideo.setAttribute("webkit-playsinline", "");
 
       const playPromise =
-        lastMaedVideo.play();
+        heroVideo.play();
 
       if (playPromise !== undefined) {
         playPromise.catch(() => {});
       }
     }
 
-    if (lastMaedVideo) {
-      lastMaedVideo.addEventListener(
+    if (heroVideo) {
+      heroVideo.addEventListener(
         "loadeddata",
-        startLastMaedVideo
+        startHeroVideo
       );
 
-      lastMaedVideo.addEventListener(
+      heroVideo.addEventListener(
         "canplay",
-        startLastMaedVideo
+        startHeroVideo
       );
 
-      lastMaedVideo.addEventListener(
+      heroVideo.addEventListener(
         "loadedmetadata",
-        startLastMaedVideo
-      );
-
-      lastMaedVideo.addEventListener(
-        "error",
-        () => {
-          console.log(
-            "Errore video LAST MÆD:",
-            lastMaedVideo.error
-          );
-        }
+        startHeroVideo
       );
     }
 
-    window.addEventListener("load", startLastMaedVideo);
+    window.addEventListener("load", startHeroVideo);
 
     document.addEventListener(
       "touchstart",
-      startLastMaedVideo,
+      startHeroVideo,
       {
         passive: true,
         once: true
@@ -978,13 +966,15 @@
         "X9A003N6",
         "R2K8E10V",
         "A6M19XQ3",
-        "Q4N8D2M7"
+        "Q4N8D2M7",
+        "T3V7A1K9",
+        "B5X02M8R"
       ];
 
       let signalIndex = 0;
       let eventCodeIndex = 0;
 
-      function scrambleText(target, finalText, className) {
+      function scrambleText(target, finalText, className = "") {
         if (!target) return;
 
         let frame = 0;
@@ -1027,7 +1017,7 @@
               target.classList.remove(className);
             }
           }
-        }, 42);
+        }, 28);
       }
 
       window.setInterval(() => {
@@ -1036,8 +1026,7 @@
 
         scrambleText(
           signalText,
-          signals[signalIndex],
-          ""
+          signals[signalIndex]
         );
       }, 2600);
 
@@ -1050,7 +1039,7 @@
           eventCodes[eventCodeIndex],
           "changing"
         );
-      }, 2300);
+      }, 1150);
     }
   </script>
 </body>
