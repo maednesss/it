@@ -7,18 +7,18 @@
   <title>MÆDNESS — Event Link</title>
   <meta
     name="description"
-    content="MÆDNESS — Halloween: The Heart Exchange."
+    content="MÆDNESS — Next Event Signal."
   >
   <meta name="theme-color" content="#050505">
 
-  <meta property="og:title" content="MÆDNESS — Halloween: The Heart Exchange">
+  <meta property="og:title" content="MÆDNESS — Next Event Signal">
   <meta
     property="og:description"
-    content="Apri il link ufficiale dell'evento MÆDNESS."
+    content="The next MÆDNESS transmission is being decoded."
   >
   <meta
     property="og:image"
-    content="https://ugc.production.linktr.ee/d176df1d-e8e2-412a-9403-5e9816f9538b_IMG-5692.jpeg"
+    content="https://ugc.production.linktr.ee/4035012a-7d56-433f-9e0c-68214cc77aff_image.png"
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,6 +163,7 @@
       align-items: center;
       justify-content: flex-end;
       gap: 7px;
+      min-width: 155px;
       color: var(--red);
       text-align: right;
     }
@@ -191,7 +192,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 48px 0 32px;
+      padding: 42px 0 28px;
       text-align: center;
       animation: sectionReveal .7s .08s ease both;
     }
@@ -290,7 +291,7 @@
     .marquee {
       position: relative;
       width: calc(100% + 40px);
-      margin: 0 -20px 23px;
+      margin: 0 -20px 24px;
       overflow: hidden;
       border-top: 1px solid rgba(255, 16, 16, .32);
       border-bottom: 1px solid rgba(255, 16, 16, .32);
@@ -323,7 +324,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 12px;
       color: var(--muted);
       font-size: 8px;
       font-weight: 900;
@@ -333,175 +335,63 @@
 
     .section-label span:last-child {
       color: var(--red);
+      text-align: right;
     }
 
-    .event-link {
+    .last-maed-section {
+      margin-bottom: 30px;
+      animation: sectionReveal .75s .14s ease both;
+    }
+
+    .last-maed-video-box {
       position: relative;
+      width: 100%;
+      margin: 0;
+    }
+
+    .last-maed-video {
       display: block;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .24);
-      background: #0b0b0b;
-      color: var(--white);
-      text-decoration: none;
-      transform: translateY(10px);
-      opacity: 0;
-      animation: cardReveal .75s .16s cubic-bezier(.22, .75, .25, 1) forwards;
-      transition:
-        border-color .22s ease,
-        transform .22s ease,
-        box-shadow .22s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .event-link:focus-visible {
-      outline: 2px solid var(--red);
-      outline-offset: 4px;
-    }
-
-    .event-link:active {
-      transform: scale(.985);
-    }
-
-    .event-link::before {
-      position: absolute;
-      z-index: 3;
-      top: 0;
-      left: -100%;
-      width: 70%;
-      height: 1px;
-      content: "";
-      background: linear-gradient(
-        90deg,
-        transparent,
-        var(--red),
-        transparent
-      );
-      animation: borderSweep 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .event-image-wrap {
-      position: relative;
-      overflow: hidden;
+      width: 100%;
       aspect-ratio: 16 / 9;
-      background: #160707;
-    }
-
-    .event-image-wrap::before {
-      position: absolute;
-      z-index: 1;
-      top: -20%;
-      left: 0;
-      width: 100%;
-      height: 16%;
-      content: "";
-      background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(255, 16, 16, .44),
-        transparent
-      );
-      animation: imageScan 5s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .event-image-wrap::after {
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-      content: "";
-      pointer-events: none;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0, 0, 0, .03) 42%,
-          rgba(0, 0, 0, .48) 100%
-        );
-    }
-
-    .event-image {
-      display: block;
-      width: 100%;
-      height: 100%;
       object-fit: cover;
-      transition:
-        transform .55s cubic-bezier(.2, .7, .2, 1),
-        filter .4s ease;
+      object-position: center;
+      background: #000;
+      border: 0;
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
     }
 
-    .event-number {
+    .last-maed-video-box::before,
+    .last-maed-video-box::after {
       position: absolute;
-      z-index: 2;
-      top: 12px;
-      left: 12px;
-      padding: 6px 8px;
-      border: 1px solid rgba(255, 255, 255, .45);
-      background: rgba(5, 5, 5, .7);
-      font-size: 7px;
-      font-weight: 900;
-      letter-spacing: .17em;
+      left: -5px;
+      z-index: 5;
+      width: 18px;
+      height: 18px;
+      content: "";
+      pointer-events: none;
     }
 
-    .event-info {
+    .last-maed-video-box::before {
+      top: -5px;
+      border-top: 1px solid var(--red);
+      border-left: 1px solid var(--red);
+    }
+
+    .last-maed-video-box::after {
+      bottom: -5px;
+      border-bottom: 1px solid var(--red);
+      border-left: 1px solid var(--red);
+    }
+
+    .last-maed-caption {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 76px;
-      padding: 14px 15px 15px;
-      border-top: 1px solid rgba(255, 255, 255, .12);
-    }
-
-    .event-copy {
-      min-width: 0;
-    }
-
-    .event-copy-label {
-      margin-bottom: 7px;
-      color: var(--red);
-      font-size: 7px;
-      font-weight: 900;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    .event-title {
-      margin: 0;
-      font-family: "Anton", sans-serif;
-      font-size: clamp(19px, 5.7vw, 25px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: .015em;
-    }
-
-    .event-arrow {
-      display: grid;
-      flex: 0 0 38px;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border: 1px solid var(--red);
-      color: var(--red);
-      animation: arrowPulse 2.2s ease-in-out infinite;
-      transition:
-        background .22s ease,
-        color .22s ease,
-        transform .22s ease;
-    }
-
-    .event-arrow svg {
-      display: block;
-      width: 16px;
-      height: 16px;
-    }
-
-    .event-cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 15px;
-      border-top: 1px solid rgba(255, 255, 255, .12);
+      margin-top: 8px;
       color: var(--muted);
       font-size: 7px;
       font-weight: 900;
@@ -509,8 +399,162 @@
       text-transform: uppercase;
     }
 
-    .event-cta span:last-child {
+    .last-maed-caption span:last-child {
       color: var(--red);
+      text-align: right;
+    }
+
+    .next-event-section {
+      animation: sectionReveal .75s .25s ease both;
+    }
+
+    .next-event-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 17px 16px 14px;
+      border: 1px solid rgba(255, 255, 255, .23);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 16, 16, .08),
+          transparent 45%
+        ),
+        rgba(10, 10, 10, .88);
+      box-shadow: inset 0 0 24px rgba(255, 16, 16, .035);
+    }
+
+    .next-event-panel::before,
+    .next-event-panel::after {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      content: "";
+      pointer-events: none;
+    }
+
+    .next-event-panel::before {
+      top: -1px;
+      left: -1px;
+      border-top: 1px solid var(--red);
+      border-left: 1px solid var(--red);
+    }
+
+    .next-event-panel::after {
+      right: -1px;
+      bottom: -1px;
+      border-right: 1px solid var(--red);
+      border-bottom: 1px solid var(--red);
+    }
+
+    .next-event-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .next-event-meta span:last-child {
+      color: var(--red);
+      text-align: right;
+    }
+
+    .signal-code-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 82px;
+      margin: 8px 0 10px;
+      overflow: hidden;
+    }
+
+    .signal-code-wrap::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: rgba(255, 16, 16, .18);
+      transform: translateY(-50%);
+    }
+
+    .signal-code {
+      position: relative;
+      z-index: 1;
+      padding: 0 12px;
+      background: #090909;
+      color: var(--white);
+      font-family: "Anton", sans-serif;
+      font-size: clamp(38px, 12vw, 54px);
+      line-height: 1;
+      letter-spacing: .14em;
+      text-align: center;
+      text-shadow:
+        3px 0 rgba(255, 16, 16, .72),
+        0 0 22px rgba(255, 16, 16, .18);
+      transition: opacity .1s ease;
+    }
+
+    .signal-code.changing {
+      opacity: .42;
+      filter: blur(1px);
+      transform: skewX(-5deg);
+    }
+
+    .next-event-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 11px;
+      border-top: 1px solid rgba(255, 255, 255, .13);
+      color: var(--muted);
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .signal-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+    }
+
+    .signal-bars i {
+      display: block;
+      width: 3px;
+      height: 5px;
+      background: var(--red);
+      opacity: .8;
+      animation: signalBars 1s ease-in-out infinite alternate;
+    }
+
+    .signal-bars i:nth-child(2) {
+      height: 9px;
+      animation-delay: .12s;
+    }
+
+    .signal-bars i:nth-child(3) {
+      height: 13px;
+      animation-delay: .24s;
+    }
+
+    .signal-bars i:nth-child(4) {
+      height: 7px;
+      animation-delay: .36s;
+    }
+
+    .signal-bars i:nth-child(5) {
+      height: 11px;
+      animation-delay: .48s;
     }
 
     .footer {
@@ -519,13 +563,13 @@
       justify-content: space-between;
       gap: 12px;
       margin-top: auto;
-      padding-top: 38px;
+      padding-top: 36px;
       color: var(--muted);
       font-size: 7px;
       font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
-      animation: sectionReveal .7s .35s ease both;
+      animation: sectionReveal .7s .4s ease both;
     }
 
     .footer-mark {
@@ -557,13 +601,6 @@
         transform: translateY(12px);
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes cardReveal {
       to {
         opacity: 1;
         transform: translateY(0);
@@ -640,59 +677,21 @@
       }
     }
 
-    @keyframes imageScan {
-      0%, 18% {
-        top: -20%;
-      }
-
-      76%, 100% {
-        top: 110%;
-      }
-    }
-
-    @keyframes borderSweep {
-      0%, 12% {
-        left: -100%;
-      }
-
-      64%, 100% {
-        left: 140%;
-      }
-    }
-
-    @keyframes arrowPulse {
-      0%, 100% {
-        box-shadow: 0 0 0 rgba(255, 16, 16, 0);
-      }
-
-      50% {
-        box-shadow: 0 0 14px rgba(255, 16, 16, .2);
-      }
-    }
-
     @keyframes marqueeMove {
       to {
         transform: translateX(-50%);
       }
     }
 
-    @media (hover: hover) {
-      .event-link:hover {
-        border-color: var(--red);
-        box-shadow: 0 0 26px rgba(255, 16, 16, .16);
-        transform: translateY(-2px);
+    @keyframes signalBars {
+      from {
+        transform: scaleY(.45);
+        opacity: .4;
       }
 
-      .event-link:hover .event-image {
-        filter: contrast(1.08) saturate(1.08);
-        transform: scale(1.035);
-      }
-
-      .event-link:hover .event-arrow {
-        transform: translate(2px, -2px);
-        background: var(--red);
-        color: var(--black);
-        animation-play-state: paused;
+      to {
+        transform: scaleY(1);
+        opacity: 1;
       }
     }
 
@@ -703,11 +702,18 @@
       }
 
       .profile {
-        padding-top: 38px;
+        padding-top: 36px;
       }
 
-      .event-title {
-        font-size: 19px;
+      .topbar-signal {
+        min-width: 135px;
+        font-size: 7px;
+      }
+
+      .marquee {
+        width: calc(100% + 32px);
+        margin-right: -16px;
+        margin-left: -16px;
       }
     }
 
@@ -772,58 +778,71 @@
       </div>
     </div>
 
-    <section aria-label="Link evento">
+    <section class="last-maed-section" aria-labelledby="last-maed-title">
       <div class="section-label">
-        <span>01 / Event Access</span>
-        <span>Open Link</span>
+        <span id="last-maed-title">01 / LAST MÆD</span>
+        <span>Video / Loop</span>
       </div>
 
-      <a
-        class="event-link"
-        href="https://pleasuresfc.it/#maednesshalloween"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Apri HALLOWEEN: THE HEART EXCHANGE"
-      >
-        <div class="event-image-wrap">
-          <img
-            class="event-image"
-            src="https://ugc.production.linktr.ee/d176df1d-e8e2-412a-9403-5e9816f9538b_IMG-5692.jpeg"
-            alt="Locandina Halloween: The Heart Exchange"
-            width="1200"
-            height="675"
-          >
-          <span class="event-number">MÆDNESS / 001</span>
+      <div class="last-maed-video-box">
+        <video
+          class="last-maed-video"
+          id="lastMaedVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+          disablepictureinpicture
+          controlslist="nodownload noplaybackrate nofullscreen"
+          aria-label="Video LAST MÆD"
+        >
+          <source src="./hero3.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="last-maed-caption">
+        <span>LAST MÆD</span>
+        <span>MÆDNESS / VISUAL LOG</span>
+      </div>
+    </section>
+
+    <section class="next-event-section" aria-labelledby="next-event-title">
+      <div class="section-label">
+        <span id="next-event-title">02 / NEXT EVENT</span>
+        <span>Signal / Encrypted</span>
+      </div>
+
+      <div class="next-event-panel">
+        <div class="next-event-meta">
+          <span>Transmission ID</span>
+          <span>Status / Unknown</span>
         </div>
 
-        <div class="event-info">
-          <div class="event-copy">
-            <div class="event-copy-label">Event Link</div>
-            <h2 class="event-title">HALLOWEEN: THE HEART EXCHANGE</h2>
+        <div class="signal-code-wrap">
+          <div
+            class="signal-code"
+            id="eventCode"
+            aria-live="polite"
+            aria-label="Codice del prossimo evento"
+          >
+            N7X04A9M
           </div>
+        </div>
 
-          <span class="event-arrow" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7 17L17 7M8 7H17V16"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="square"
-                stroke-linejoin="miter"
-              />
-            </svg>
+        <div class="next-event-status">
+          <span id="decodeStatus">Decoding transmission</span>
+
+          <span class="signal-bars" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
           </span>
         </div>
-
-        <div class="event-cta">
-          <span>Tap to enter</span>
-          <span>Access / 001</span>
-        </div>
-      </a>
+      </div>
     </section>
 
     <footer class="footer">
@@ -840,6 +859,12 @@
 
     const signalText =
       document.getElementById("signalText");
+
+    const eventCode =
+      document.getElementById("eventCode");
+
+    const lastMaedVideo =
+      document.getElementById("lastMaedVideo");
 
     const reduceMotion =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -880,7 +905,66 @@
 
     updateScrollProgress();
 
-    if (!reduceMotion && signalText) {
+    function startLastMaedVideo() {
+      if (!lastMaedVideo) return;
+
+      lastMaedVideo.muted = true;
+      lastMaedVideo.defaultMuted = true;
+
+      lastMaedVideo.setAttribute("muted", "");
+      lastMaedVideo.setAttribute("playsinline", "");
+      lastMaedVideo.setAttribute("webkit-playsinline", "");
+
+      const playPromise =
+        lastMaedVideo.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+
+    if (lastMaedVideo) {
+      lastMaedVideo.addEventListener(
+        "loadeddata",
+        startLastMaedVideo
+      );
+
+      lastMaedVideo.addEventListener(
+        "canplay",
+        startLastMaedVideo
+      );
+
+      lastMaedVideo.addEventListener(
+        "loadedmetadata",
+        startLastMaedVideo
+      );
+
+      lastMaedVideo.addEventListener(
+        "error",
+        () => {
+          console.log(
+            "Errore video LAST MÆD:",
+            lastMaedVideo.error
+          );
+        }
+      );
+    }
+
+    window.addEventListener("load", startLastMaedVideo);
+
+    document.addEventListener(
+      "touchstart",
+      startLastMaedVideo,
+      {
+        passive: true,
+        once: true
+      }
+    );
+
+    if (!reduceMotion) {
+      const matrixChars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
       const signals = [
         "MÆDNESS / EVENT INDEX",
         "SIGNAL / ACTIVE",
@@ -888,48 +972,85 @@
         "ACCESS / OPEN"
       ];
 
-      const matrixChars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 /.-_:Æ";
+      const eventCodes = [
+        "N7X04A9M",
+        "M4D71Q2X",
+        "X9A003N6",
+        "R2K8E10V",
+        "A6M19XQ3",
+        "Q4N8D2M7"
+      ];
 
       let signalIndex = 0;
+      let eventCodeIndex = 0;
 
-      function scrambleSignal(nextText) {
+      function scrambleText(target, finalText, className) {
+        if (!target) return;
+
         let frame = 0;
-        const totalFrames = 7;
+        const totalFrames = 8;
+
+        if (className) {
+          target.classList.add(className);
+        }
 
         const scramble = window.setInterval(() => {
           frame++;
 
-          signalText.textContent =
-            Array.from(nextText)
+          target.textContent =
+            Array.from(finalText)
               .map((character, index) => {
                 if (character === " ") {
                   return " ";
                 }
 
-                if (index < frame || Math.random() < .2) {
+                if (
+                  index < frame ||
+                  Math.random() < .18
+                ) {
                   return character;
                 }
 
                 return matrixChars[
-                  Math.floor(Math.random() * matrixChars.length)
+                  Math.floor(
+                    Math.random() * matrixChars.length
+                  )
                 ];
               })
               .join("");
 
           if (frame >= totalFrames) {
             window.clearInterval(scramble);
-            signalText.textContent = nextText;
+            target.textContent = finalText;
+
+            if (className) {
+              target.classList.remove(className);
+            }
           }
-        }, 38);
+        }, 42);
       }
 
       window.setInterval(() => {
         signalIndex =
           (signalIndex + 1) % signals.length;
 
-        scrambleSignal(signals[signalIndex]);
-      }, 2400);
+        scrambleText(
+          signalText,
+          signals[signalIndex],
+          ""
+        );
+      }, 2600);
+
+      window.setInterval(() => {
+        eventCodeIndex =
+          (eventCodeIndex + 1) % eventCodes.length;
+
+        scrambleText(
+          eventCode,
+          eventCodes[eventCodeIndex],
+          "changing"
+        );
+      }, 2300);
     }
   </script>
 </body>
